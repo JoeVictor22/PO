@@ -1,7 +1,6 @@
 import timeit
 from random import randint
 import matplotlib.pyplot as plt
-from multiprocessing import process
 
 def geraLista(tam):
     lista = []
@@ -11,8 +10,6 @@ def geraLista(tam):
     return lista
 
 def desenhaGrafico(x,lista,xl = "Entradas", yl = "Y",nam="out"):
-   # fig = plt.figure(figsize=(10, 13))
-   # ax = fig.add_subplot(111)
     plt.plot(x,lista, label = "Bubble Sort")
     plt.legend(bbox_to_anchor=(1, 1),bbox_transform=plt.gcf().transFigure)
     plt.ylabel(yl)
