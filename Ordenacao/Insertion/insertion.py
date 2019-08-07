@@ -17,7 +17,7 @@ def geraLista(tam):
         if n not in lista: lista.append(n)
     return lista
 
-def desenhaGrafico(x,lista1,lista2,xl = "Entradas", yl = "Y",name="out", label1 = "Lista Invertida", label2= "Lista Randomica"):
+def desenhaGrafico(x,lista1,lista2,xl = "Entradas", yl = "Y",name="out", label1 = "Lista Randomica", label2= "Lista Invertida"):
     fig = plt.figure(figsize=(10, 8))
     ax = fig.add_subplot(111)
     ax.plot(x, lista1, label = label1)
