@@ -18,20 +18,20 @@ def desenhaGrafico(x,lista1,xl = "Entradas", yl = "Y",name="out", label1 = "List
     plt.savefig(name)
 
 def sort(lista, maximo):
-    shell(lista, maximo)
+    count(lista, maximo)
 
 def count(lista, maximo):
-	count = [0] * maximo
+	count = [0] * (maximo+1)
 	listaOrdenada = [None] * len(lista)
 	for i in range(len(lista)):
 		count[lista[i]] += 1
-	for i in range(1, maximo):
+	for i in range(1, maximo+1):
 		count[i] += count[i-1] 
 	for i in range(len(lista)):
 		listaOrdenada[count[lista[i]]-1] = lista[i]
 		count[lista[i]] -= 1
 
-quant = [1000,2000,4000,5000,10000,20000]
+quant = [100000,200000,400000,500000,1000000,2000000]
 graf_tempo = []
 
 for i in range(len(quant)):
