@@ -1,17 +1,23 @@
 class patricia():
     def __init__(self):
         self._data = {}
+    
+    '''
+	__repr__ = {nodeIndex : ['word', {nodes}]}
+	{node : ['', {}]} 
+
+    '''
 
     def add(self, word):
         data = self._data
         i = 0
         while 1:
             try:
-				#verifica se existe algo no node
+				#verifica se nesse nivel existe key com a mesma indexação da palavra
                 node = data[word[i:i+1]]
             except KeyError:	
                 if data:
-					#cria a key como indexação do node
+					#cria a key como indexação do node se ja existir key com o mesmo prefixo
                     data[word[i:i+1]] = [word[i+1:],{}]
                 else:
 					#se nao existir node
@@ -20,19 +26,20 @@ class patricia():
                         return
                     else:
                         if i != 0:
+                        	#caso não esteja indexado no primeiro char é preciso criar uma key vazia informando q eh uma palavra
                             data[''] = ['',{}]
                         data[word[i:i+1]] = [word[i+1:],{}]
                 return
 
-			#existindo algo no node, verifica primeiro caractere da palavra de acordo com o index
+			#existindo uma key no dicionario q corresponda com o index da palavra
             i += 1
             if word.startswith(node[0],i):
 				#se o resto da palavra apos o index é identico ao valor dentro do node
-				#registra um node informando q é uma palavra
+				#registra um node informando q é uma palavra ou parte para o proximo no interno
                 if len(word[i:]) == len(node[0]):
+                	#verifica se ja verificou tds os char da palavra e retorna
                     if node[1]:
-						#se existe nos
-						#cria um item informando q é uma palavra
+						#cria um item informando q é uma palavra caso nao exista
                         try:
                             node[1]['']
                         except KeyError:
@@ -43,7 +50,8 @@ class patricia():
                 else:
                     i += len(node[0])
                     data = node[1]
-			#acessa os nos gardados nesse nivel
+
+			#caso em que é inserido um novo no com prefix ja existente
             else:
                 ii = i
                 j = 0
